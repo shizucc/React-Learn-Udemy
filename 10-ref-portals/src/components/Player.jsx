@@ -9,7 +9,6 @@ export default function Player() {
     playerName.current.value = "";
   }
 
-  // function
   return (
     <section id="player">
       <h2>Welcome {enteredPlayerName ?? "unknown entity"} </h2>
