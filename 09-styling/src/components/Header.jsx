@@ -38,12 +38,18 @@ const StyledHeader = styled.header`
 `;
 export default function Header() {
   return (
-    <StyledHeader>
-      <img src={logo} alt="A canvas" />
-      <h1>ReactArt</h1>
+    <header className="flex flex-col items-center mt-16 mb-8 md:mb-4">
+      <img
+        src={logo}
+        alt="A canvas"
+        className="w-44 h-44 mb-8 object-contain"
+      />
+      <h1 className="text-xl md:text-4xl uppercase font-semibold tracking-widest text-amber-800 font-title ">
+        ReactArt
+      </h1>
       <p className={classes.paragraph}>
         A community of artists and art-lovers.
       </p>
-    </StyledHeader>
+    </header>
   );
 }
