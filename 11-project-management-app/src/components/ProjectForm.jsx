@@ -1,9 +1,6 @@
-import Button from "./Buttons/Button";
-import Input from "./Input";
-
 export default function ProjectForm() {
   return (
-    <section className="flex w-[36rem] px-10 flex-col justify-center">
+    <section className="flex w-full px-10 flex-col justify-center items-center">
       <div className="flex flex-row gap-3 self-end">
         <button className=" hover:bg-gray-300 text-gray-700 rounded-md px-3 py-1">
           Cancel
@@ -20,13 +17,12 @@ export default function ProjectForm() {
           >
             title
           </label>
-          <p className="mt-1">
-            <input
-              className="bg-slate-200 rounded w-full h-8 focus:border-b-2 focus:border-slate-500 focus:outline-none"
-              id="title"
-              type="text"
-            />
-          </p>
+
+          <input
+            className=" bg-slate-200 rounded w-full h-8 focus:border-b-2 focus:border-slate-500 focus:outline-none"
+            id="title"
+            type="text"
+          />
         </p>
         <p className="my-3">
           <label
