@@ -1,5 +1,8 @@
 import "../assets/no-projects.png";
-export default function Home() {
+export default function Home({ onCreateProject }) {
+  function handleCreateProject() {
+    onCreateProject();
+  }
   return (
     <div className="flex  px-10 flex-col justify-center items-center">
       <img src="src/assets/no-projects.png" alt="heh" className="w-20" />
@@ -8,7 +11,10 @@ export default function Home() {
         Select a project or create new project!
       </p>
       <p className="mt-3">
-        <button className="text-gray-600 font-medium rounded-md bg-gray-400 px-2 py-1 ">
+        <button
+          onClick={handleCreateProject}
+          className="text-gray-600  font-medium rounded-md bg-gray-200 hover:bg-gray-400 px-2 py-1 "
+        >
           Create New Project
         </button>
       </p>

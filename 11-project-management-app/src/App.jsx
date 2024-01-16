@@ -46,6 +46,36 @@ function App() {
     setPage("project");
   }
 
+  function handleProjectSave(project) {
+    setProjects((prevProjects) => [...prevProjects, project]);
+  }
+
+  function handleProjectDelete() {
+    console.log(selectedProjectIndex);
+    const updatedProjects = [...projects];
+    updatedProjects.splice(selectedProjectIndex, 1);
+    setProjects(updatedProjects);
+    setPage("home");
+    setSelectedProjectIndex(null);
+  }
+
+  function handleTaskSave(task) {
+    setProjects((prevProjects) => {
+      const projects = [...prevProjects];
+      projects[selectedProjectIndex] = {
+        ...projects[selectedProjectIndex],
+        tasks: [...projects[selectedProjectIndex].tasks, task],
+      };
+      return projects;
+    });
+  }
+  function handleTaskDelete(taskIndex) {
+    const updatedProjects = [...projects];
+    const tasks = updatedProjects[selectedProjectIndex].tasks;
+    tasks.splice(taskIndex, 1);
+    setProjects(updatedProjects);
+  }
+
   return (
     <div className="flex flex-row gap-3 h-screen">
       <SideAppbar
@@ -56,10 +86,22 @@ function App() {
         selectedProjectIndex={selectedProjectIndex}
       />
       <main className="h-screen  flex justify-center py-5">
-        {page === "home" && <Home />}
-        {page === "addProject" && <ProjectForm />}
+        {page === "home" && (
+          <Home onCreateProject={() => handlePageClick("addProject")} />
+        )}
+        {page === "addProject" && (
+          <ProjectForm
+            onSave={(project) => handleProjectSave(project)}
+            onCancel={() => handlePageClick("home")}
+          />
+        )}
         {page === "project" && (
-          <ProjectPage project={projects[selectedProjectIndex]} />
+          <ProjectPage
+            project={projects[selectedProjectIndex]}
+            onTaskSave={(task) => handleTaskSave(task)}
+            onTaskDelete={(taskIndex) => handleTaskDelete(taskIndex)}
+            onProjectDelete={() => handleProjectDelete()}
+          />
         )}
       </main>
     </div>

@@ -1,5 +1,4 @@
 export default function SideAppbar({
-  selectedPage,
   onSelectedPage,
   projects,
   selectedProjectIndex,
