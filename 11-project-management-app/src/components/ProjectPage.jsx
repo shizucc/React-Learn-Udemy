@@ -20,18 +20,17 @@ export default function ProjectPage({
     onProjectDelete();
   }
   function showDeleteModal() {
-    deleteDialog.current.displayDialog();
+    // deleteDialog.current.displayDialog();
   }
   return (
     <>
-      {/* <DeleteModal ref={deleteDialog} onConfirmDelete={handleProjectDelete} /> */}
-      <div className="flex px-10 flex-col justify-center">
+      <div className="flex px-10 flex-col  h-screen justify-center">
         <section className="flex flex-row">
           <h2 className="text-2xl font-semibold text-gray-600 grow">
             {project.title}
           </h2>
           <button
-            onClick={() => handleProjectDelete()}
+            onClick={() => showDeleteModal()}
             className="text-grey-600 font-medium rounded-md hover:bg-gray-400 px-2 "
           >
             Delete

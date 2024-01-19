@@ -8,7 +8,7 @@ export default function SideAppbar({
     onSelectedPage(pageTitle);
   }
   return (
-    <aside className="bg-gray-900 w-70 mt-10 rounded-tr-xl p-8">
+    <aside className="bg-gray-900 w-70 mt-10 h-screen rounded-tr-xl p-8">
       <p>
         <button onClick={() => handlePageClick("home")}>
           <h1 className="text-slate-50 text-2xl font-semibold">

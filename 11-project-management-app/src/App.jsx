@@ -51,7 +51,6 @@ function App() {
   }
 
   function handleProjectDelete() {
-    console.log(selectedProjectIndex);
     const updatedProjects = [...projects];
     updatedProjects.splice(selectedProjectIndex, 1);
     setProjects(updatedProjects);
@@ -77,7 +76,7 @@ function App() {
   }
 
   return (
-    <div className="flex flex-row gap-3 h-screen">
+    <main className="flex flex-row gap-3 h-screen">
       <SideAppbar
         selectedPage={null}
         onSelectedPage={(title) => handlePageClick(title)}
@@ -85,7 +84,7 @@ function App() {
         onProjectClick={(index) => handleProjectClick(index)}
         selectedProjectIndex={selectedProjectIndex}
       />
-      <main className="h-screen  flex justify-center py-5">
+      <div className="flex my-6">
         {page === "home" && (
           <Home onCreateProject={() => handlePageClick("addProject")} />
         )}
@@ -103,8 +102,8 @@ function App() {
             onProjectDelete={() => handleProjectDelete()}
           />
         )}
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
 
