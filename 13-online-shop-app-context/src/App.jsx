@@ -64,14 +64,16 @@ function App() {
       };
     });
   }
+  const ctxValue = {
+    items: shoppingCart.items,
+    addItemToCart: handleAddItemToCart,
+    updateCartItemQuantity: handleUpdateCartItemQuantity,
+  };
 
   return (
-    <CartContext.Provider value={shoppingCart}>
-      <Header
-        cart={shoppingCart}
-        onUpdateCartItemQuantity={handleUpdateCartItemQuantity}
-      />
-      <Shop onAddItemToCart={handleAddItemToCart} />
+    <CartContext.Provider value={ctxValue}>
+      <Header />
+      <Shop />
     </CartContext.Provider>
   );
 }
