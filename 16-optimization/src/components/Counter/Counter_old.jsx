@@ -1,15 +1,13 @@
-import { useState, memo, useCallback, useMemo, useEffect } from "react";
+import { useState, memo, useCallback, useMemo } from "react";
 
 import IconButton from "../UI/IconButton.jsx";
 import MinusIcon from "../UI/Icons/MinusIcon.jsx";
 import PlusIcon from "../UI/Icons/PlusIcon.jsx";
 import CounterOutput from "./CounterOutput.jsx";
 import { log } from "../../log.js";
-import CounterHistory from "./CounterHistory.jsx";
 
 function isPrime(number) {
   log("Calculating if is prime number", 2, "other");
-
   if (number <= 1) {
     return false;
   }
@@ -24,43 +22,21 @@ function isPrime(number) {
 
   return true;
 }
-
-const Counter = memo(function Counter({ initialCount }) {
+const Counter_old = memo(function Counter({ initialCount }) {
   log("<Counter /> rendered", 1);
-
   const initialCountIsPrime = useMemo(
     () => isPrime(initialCount),
     [initialCount]
   );
 
-  // useEffect(() => {
-  //   setCounterChanges([{ value: initialCount, key: Math.random() * 100 }]);
-  // }, [initialCount]);
-
-  // const [counter, setCounter] = useState(initialCount);
-  const [counterChanges, setCounterChanges] = useState([
-    { value: initialCount, key: Math.random() * 100 },
-  ]);
-
-  const currentCounter = counterChanges.reduce(
-    (prevCounter, counterChange) => prevCounter + counterChange.value,
-    0
-  );
+  const [counter, setCounter] = useState(initialCount);
 
   const handleDecrement = useCallback(function handleDecrement() {
-    // setCounter((prevCounter) => prevCounter - 1);
-    setCounterChanges((prevCounterChanges) => [
-      { value: -1, key: Math.random() * 100 },
-      ...prevCounterChanges,
-    ]);
+    setCounter((prevCounter) => prevCounter - 1);
   }, []);
 
   const handleIncrement = useCallback(function handleIncrement() {
-    // setCounter((prevCounter) => prevCounter + 1);
-    setCounterChanges((prevCounterChanges) => [
-      { value: 1, key: Math.random() * 100 },
-      ...prevCounterChanges,
-    ]);
+    setCounter((prevCounter) => prevCounter + 1);
   }, []);
 
   return (
@@ -73,14 +49,13 @@ const Counter = memo(function Counter({ initialCount }) {
         <IconButton icon={MinusIcon} onClick={handleDecrement}>
           Decrement
         </IconButton>
-        <CounterOutput value={currentCounter} />
+        <CounterOutput value={counter} />
         <IconButton icon={PlusIcon} onClick={handleIncrement}>
           Increment
         </IconButton>
       </p>
-      <CounterHistory history={counterChanges} />
     </section>
   );
 });
 
-export default Counter;
+export default Counter_old;
